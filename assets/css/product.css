@@ -433,7 +433,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 28px 23px;
-  background: linear-gradient(145deg, rgba(20,43,69,.97), rgba(11,23,38,.99));
+  background: linear-gradient(145deg, rgba(20,43,69,.85), rgba(11,23,38,.85));
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
