@@ -74,3 +74,51 @@
     document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'))
   }
 })()
+
+
+// dropdown
+
+document.querySelectorAll(".dropdown-trigger").forEach(trigger => {
+
+  trigger.addEventListener("click", function(event) {
+
+    if (window.innerWidth <= 991) {
+
+      event.preventDefault();
+
+      const parent = this.closest(".nav-dropdown");
+
+      parent.classList.toggle("active");
+
+    }
+
+  });
+
+});
+
+
+document.querySelectorAll(".dropdown-trigger").forEach(trigger => {
+
+  trigger.addEventListener("click", function(event) {
+
+    if (window.innerWidth <= 991) {
+
+      event.preventDefault();
+
+      const parent = this.closest(".nav-dropdown");
+
+      // Close other dropdowns
+      document.querySelectorAll(".nav-dropdown").forEach(item => {
+        if (item !== parent) {
+          item.classList.remove("active");
+        }
+      });
+
+      // Toggle current dropdown
+      parent.classList.toggle("active");
+
+    }
+
+  });
+
+});
