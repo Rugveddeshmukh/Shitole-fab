@@ -1025,6 +1025,348 @@ em {
   margin-top: 50px;
 }
 
+/* =========================================
+   PREMIUM STATS SECTION
+========================================= */
+
+.section-dark {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      120deg,
+      #00215C 0%,
+      #21386F 50%,
+      #00215C 100%
+    );
+
+  background-size: 200% 200%;
+  animation: statsBackground 10s ease infinite;
+}
+
+
+/* Animated Navy Gradient */
+@keyframes statsBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* =========================================
+   GOLD LIGHT GLOW
+========================================= */
+
+.section-dark::before {
+  content: "";
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  top: -250px;
+  left: -150px;
+
+  background: radial-gradient(
+    circle,
+    rgba(253,174,1,0.20) 0%,
+    rgba(253,174,1,0.07) 35%,
+    transparent 70%
+  );
+
+  animation: goldGlow 7s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+
+.section-dark::after {
+  content: "";
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  right: -150px;
+  bottom: -250px;
+
+  background: radial-gradient(
+    circle,
+    rgba(253,174,1,0.16) 0%,
+    transparent 70%
+  );
+
+  animation: goldGlowReverse 8s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+
+@keyframes goldGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(70px, 50px) scale(1.15);
+  }
+}
+
+
+@keyframes goldGlowReverse {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-60px, -40px) scale(1.12);
+  }
+}
+
+
+/* =========================================
+   STAT BAND
+========================================= */
+
+.stat-band {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 0;
+
+  width: 100%;
+}
+
+
+/* =========================================
+   INDIVIDUAL STAT
+========================================= */
+
+.stat-band > .reveal {
+  position: relative;
+
+  text-align: center;
+
+  padding: 20px 30px;
+
+  transition:
+    transform 0.45s ease,
+    background 0.45s ease;
+}
+
+
+/* Hover */
+.stat-band > .reveal:hover {
+  transform: translateY(-8px);
+}
+
+
+/* =========================================
+   GOLD DIVIDERS
+========================================= */
+
+.stat-band > .reveal:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  top: 15%;
+  right: 0;
+
+  width: 1px;
+  height: 70%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(253,174,1,0.55),
+    transparent
+  );
+}
+
+
+/* =========================================
+   NUMBER
+========================================= */
+
+.stat-num {
+  color: #FDAE01;
+
+  font-size: clamp(42px, 5vw, 68px);
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -1px;
+
+  text-shadow:
+    0 0 15px rgba(253,174,1,0.18);
+
+  transition:
+    transform 0.45s ease,
+    text-shadow 0.45s ease;
+}
+
+
+/* Number hover */
+.stat-band > .reveal:hover .stat-num {
+  transform: scale(1.08);
+
+  text-shadow:
+    0 0 28px rgba(253,174,1,0.45);
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.stat-label {
+  margin-top: 12px;
+
+  color: #FFFFFF;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.5px;
+
+  transition:
+    color 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+.stat-band > .reveal:hover .stat-label {
+  color: #FDAE01;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.stat-band > .reveal {
+  opacity: 0;
+
+  transform:
+    translateY(35px)
+    scale(0.96);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.stat-band > .reveal.is-visible {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+/* Stagger */
+.stat-band > .reveal:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.stat-band > .reveal:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.stat-band > .reveal:nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+.stat-band > .reveal:nth-child(4) {
+  transition-delay: 0.35s;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .stat-band {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stat-band > .reveal:not(:last-child)::after {
+    display: none;
+  }
+
+  .stat-band > .reveal {
+    padding: 18px 10px;
+  }
+
+  .stat-num {
+    font-size: 42px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .stat-band {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-num {
+    font-size: 36px;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .section-dark,
+  .section-dark::before,
+  .section-dark::after {
+    animation: none !important;
+  }
+
+  .stat-band > .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+
+  .stat-num,
+  .stat-label {
+    transition: none !important;
+  }
+}
+
 
 
 /* ---------- Spec grid (services) ---------- */
@@ -1162,6 +1504,9 @@ em {
 .spec-link:hover .arrow {
   transform: translateX(4px);
 }
+
+
+
 
 
 
@@ -1624,7 +1969,7 @@ em {
 
     linear-gradient(rgba(20, 36, 74, 0.90), rgba(20, 36, 74, 0.94)),
 
-    url("../img/img-1920x1080-2.jpg") center / cover no-repeat;
+    url("../img/banner.png") center / cover no-repeat;
 
   padding: 100px 0;
 
@@ -3838,4 +4183,388 @@ em {
   .nav-dropdown.active .arrow {
     transform: rotate(180deg);
   }
+}
+
+/* ===============================
+   CAREER PAGE
+================================ */
+
+.career-intro-grid,
+.career-job-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.career-intro-card,
+.career-job-card {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #D9E0EC;
+  border-radius: 12px;
+  transition: 0.35s ease;
+}
+
+.career-intro-card:hover,
+.career-job-card:hover {
+  transform: translateY(-7px);
+  border-color: #FDAE01;
+  box-shadow: 0 15px 35px rgba(0, 33, 92, 0.10);
+}
+
+.career-icon,
+.career-job-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FDAE01;
+  color: #00215C;
+  border-radius: 12px;
+  font-size: 25px;
+  margin-bottom: 22px;
+  transition: 0.35s ease;
+}
+
+.career-intro-card:hover .career-icon,
+.career-job-card:hover .career-job-icon {
+  background: #00215C;
+  color: #FDAE01;
+  transform: rotate(-8deg);
+}
+
+.career-intro-card h3,
+.career-job-card h3 {
+  color: #00215C;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.career-intro-card p,
+.career-job-card p {
+  color: #667085;
+  line-height: 1.7;
+  font-size: 0.94rem;
+  margin-bottom: 0;
+}
+
+.career-job-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.career-tag {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 7px 13px;
+  background: #F7F9FC;
+  color: #00215C;
+  border-left: 3px solid #FDAE01;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* APPLICATION FORM */
+
+.career-form-wrap {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 38px;
+  background: #fff;
+  border: 1px solid #D9E0EC;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 33, 92, 0.06);
+}
+
+.career-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.career-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.career-field-full {
+  grid-column: 1 / -1;
+}
+
+.career-field label {
+  color: #00215C;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.career-field input,
+.career-field select,
+.career-field textarea {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid #D9E0EC;
+  border-radius: 7px;
+  background: #fff;
+  color: #00215C;
+  font: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: 0.3s ease;
+  box-sizing: border-box;
+}
+
+.career-field input:focus,
+.career-field select:focus,
+.career-field textarea:focus {
+  border-color: #FDAE01;
+  box-shadow: 0 0 0 3px rgba(253, 174, 1, 0.12);
+}
+
+.career-field textarea {
+  resize: vertical;
+}
+
+.career-field small {
+  color: #667085;
+  font-size: 0.78rem;
+}
+
+.career-submit {
+  margin-top: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.career-submit i {
+  margin-left: 8px;
+}
+
+.career-form-msg {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #00215C;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .career-intro-grid,
+  .career-job-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .career-intro-grid,
+  .career-job-grid,
+  .career-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .career-form-wrap {
+    padding: 22px 18px;
+  }
+
+  .career-field-full {
+    grid-column: auto;
+  }
+
+  .career-intro-card,
+  .career-job-card {
+    padding: 24px;
+  }
+}
+/* Career Why Join Us - White Text */
+
+.section-dark .split-copy p {
+    color: #FFFFFF !important;
+}
+
+.section-dark .split-copy .check-list .check-item {
+    color: #FFFFFF !important;
+}
+
+.section-dark .split-copy h2 {
+    color: #FFFFFF !important;
+}
+
+.section-dark .split-copy .eyebrow {
+    color: #FDAE01 !important;
+}
+/* Footer Logo Visibility Fix */
+.site-footer .footer-logo {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 12px !important;
+    margin-bottom: 20px !important;
+    background: #FFFFFF !important;
+    border-radius: 8px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.site-footer .footer-logo img {
+    display: block !important;
+    width: 160px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+.footer-bottom .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-bottom .container p {
+    text-align: center;
+    margin: 0;
+    width: 100%;
+}
+/* Footer Product 4 Column Layout */
+.footer-product-columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.footer-product-columns .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-product-columns .footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-product-columns .footer-links a {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-product-columns .footer-links a:hover {
+    color: #FFB718;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .footer-product-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .footer-product-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+/* ===== Footer Compact Layout ===== */
+
+.site-footer {
+    padding-top: 45px;
+    padding-bottom: 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr 0.75fr 1.25fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* Products - 3 Columns */
+.footer-product-columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.footer-product-columns .footer-links {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer-product-columns .footer-links li {
+    margin-bottom: 9px;
+}
+
+.footer-product-columns .footer-links a {
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: normal;
+}
+
+/* Footer Headings */
+.site-footer .footer-col h3 {
+    margin-bottom: 22px;
+    font-size: 16px;
+}
+
+/* Logo */
+.footer-logo img {
+    width: 180px;
+    height: auto;
+}
+
+/* Description */
+.site-footer .footer-col p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Social Icons */
+.footer-social {
+    margin-top: 18px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 35px;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer-product-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
 }
