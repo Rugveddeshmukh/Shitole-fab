@@ -3839,3 +3839,160 @@ em {
     transform: rotate(180deg);
   }
 }
+
+
+/* Roofing Sheet */
+
+/* Shitole Roofing: extra animations + hover effects (pure CSS, no JS).
+   Load AFTER style.css. Change --fx to match your accent colour. */
+:root{--fx:#D9A520;--fx-dark:#06142A;--fx-ease:cubic-bezier(.22,.8,.3,1)}
+
+/* ---------- Page banner: one orchestrated entrance ---------- */
+.page-banner{position:relative;overflow:hidden}
+.page-banner .eyebrow{animation:fxUp .8s var(--fx-ease) both}
+.page-banner h1{animation:fxUp .9s .15s var(--fx-ease) both}
+.page-banner h1 em{position:relative}
+.page-banner h1 em:after{content:"";position:absolute;left:0;bottom:-.08em;height:.09em;width:100%;background:var(--fx);transform-origin:left;animation:fxLine 1s .9s var(--fx-ease) both}
+.page-banner p{animation:fxUp .9s .35s var(--fx-ease) both}
+.page-banner .crumb{animation:fxUp .9s .5s var(--fx-ease) both}
+.page-banner:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background:repeating-linear-gradient(115deg,#fff 0 2px,transparent 2px 22px);animation:fxSlide 14s linear infinite}
+.page-banner .container{position:relative;z-index:1}
+@keyframes fxUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fxLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fxSlide{to{background-position:220px 0}}
+
+/* ---------- Navigation ---------- */
+.nav-link{position:relative}
+.nav-link:not(.dropdown-trigger):after,.dropdown-trigger:after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--fx);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--fx-ease)}
+.nav-link:hover:after,.nav-link:focus-visible:after,.nav-dropdown:hover .dropdown-trigger:after{transform:scaleX(1);transform-origin:left}
+.dropdown-menu a{position:relative;transition:padding-left .3s var(--fx-ease),background-color .3s,color .3s}
+.dropdown-menu a:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--fx);transform:scaleY(0);transition:transform .3s var(--fx-ease)}
+.dropdown-menu a:hover{padding-left:1.5rem}.dropdown-menu a:hover:before{transform:scaleY(1)}
+.dropdown-trigger .arrow{display:inline-block;transition:transform .3s var(--fx-ease)}
+.nav-dropdown:hover .arrow{transform:rotate(180deg)}
+.brand-logo{transition:transform .4s var(--fx-ease),filter .4s}
+.brand:hover .brand-logo{transform:scale(1.05);filter:drop-shadow(0 4px 10px rgba(217,165,32,.35))}
+.topbar a{transition:color .25s}.topbar a:hover{color:var(--fx)}
+
+/* ---------- Buttons: lift + shine sweep ---------- */
+.btn,.nav-cta{position:relative;overflow:hidden;isolation:isolate;transition:transform .3s var(--fx-ease),box-shadow .3s,background-color .3s,color .3s,border-color .3s}
+.btn:before,.nav-cta:before{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);z-index:-1;transition:left .6s var(--fx-ease)}
+.btn:hover:before,.nav-cta:hover:before{left:130%}
+.btn:hover,.nav-cta:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,.28)}
+.btn:active,.nav-cta:active{transform:translateY(0) scale(.97)}
+.btn-primary{animation:fxGlow 2.8s ease-in-out infinite}
+.btn-primary:hover{animation-play-state:paused}
+@keyframes fxGlow{0%,100%{box-shadow:0 0 0 0 rgba(217,165,32,.45)}50%{box-shadow:0 0 0 10px rgba(217,165,32,0)}}
+
+/* ---------- Section titles ---------- */
+.section-title{position:relative;padding-bottom:.35em}
+.section-title:after{content:"";position:absolute;left:0;bottom:0;width:72px;height:4px;background:var(--fx);border-radius:2px;transition:width .5s var(--fx-ease)}
+.section-head:hover .section-title:after{width:140px}
+@supports(animation-timeline:view()){
+ .section-title:after{animation:fxLine linear both;animation-timeline:view();animation-range:entry 20% entry 90%}}
+
+/* ---------- Roofing post cards ---------- */
+.blog-grid .post-card{position:relative;overflow:hidden;transition:opacity .7s ease,transform .45s var(--fx-ease),box-shadow .45s var(--fx-ease)}
+.blog-grid .post-card:before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--fx);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--fx-ease);z-index:2}
+.blog-grid .post-card:hover{transform:translateY(-10px);box-shadow:0 24px 44px rgba(0,0,0,.28)}
+.blog-grid .post-card:hover:before{transform:scaleX(1)}
+.post-card img{transition:transform .8s var(--fx-ease),filter .5s}
+.post-card:hover img{transform:scale(1.1) rotate(.6deg);filter:brightness(1.06) saturate(1.1)}
+.post-card:has(img){}
+.post-meta{display:inline-block;transition:letter-spacing .35s var(--fx-ease),color .3s}
+.post-card:hover .post-meta{letter-spacing:.06em;color:var(--fx)}
+.post-card h3 a{background:linear-gradient(var(--fx),var(--fx)) 0 100%/0 2px no-repeat;transition:background-size .45s var(--fx-ease),color .3s}
+.post-card:hover h3 a{background-size:100% 2px}
+.post-link{display:inline-block;transition:transform .35s var(--fx-ease),color .3s}
+.post-card:hover .post-link,.post-link:hover{transform:translateX(8px);color:var(--fx)}
+
+/* ---------- CTA section: moving roof-line texture ---------- */
+.cta-section{position:relative;overflow:hidden}
+.cta-section:before{content:"";position:absolute;inset:-20% 0;pointer-events:none;opacity:.07;
+  background:repeating-linear-gradient(90deg,#fff 0 6px,transparent 6px 26px);animation:fxSlide 20s linear infinite}
+.cta-inner{position:relative;z-index:1}
+
+/* ---------- Footer ---------- */
+.footer-links a{display:inline-block;transition:transform .3s var(--fx-ease),color .3s}
+.footer-links a:hover{transform:translateX(6px);color:var(--fx)}
+.footer-social a{display:inline-flex;transition:transform .35s var(--fx-ease),background-color .3s,color .3s}
+.footer-social a:hover{transform:translateY(-5px) rotate(-6deg);background:var(--fx);color:var(--fx-dark)}
+.newsletter input{transition:box-shadow .3s,border-color .3s}
+.newsletter input:focus{border-color:var(--fx);box-shadow:0 0 0 3px rgba(217,165,32,.3)}
+.back-to-top{transition:transform .3s var(--fx-ease),background-color .3s}
+.back-to-top:hover{transform:translateY(-6px);animation:fxBob .9s ease-in-out infinite}
+@keyframes fxBob{50%{transform:translateY(-10px)}}
+
+/* ---------- Respect reduced motion ---------- */
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;transition:none!important}
+ .page-banner *{opacity:1!important;transform:none!important}
+}
+
+/* Roofing projects: card grid + full-page project view (pure CSS, uses :target) */
+.rp-section{--g:#D9A520;--n:#0B2447;--d:#06142A;--e:cubic-bezier(.22,.8,.3,1)}
+.rp-section{scroll-margin-top:90px}
+.rp-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:270px;gap:18px}
+.rp-card{position:relative;overflow:hidden;display:block;border-radius:6px;background:var(--d);color:#fff;isolation:isolate;transition:transform .45s var(--e),box-shadow .45s var(--e)}
+.rp-feature{grid-column:span 2;grid-row:span 2}
+.rp-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s var(--e),filter .5s}
+.rp-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,20,42,0) 25%,rgba(6,20,42,.92));transition:background .5s}
+.rp-card:before{content:"";position:absolute;left:0;bottom:0;height:5px;width:100%;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--e)}
+.rp-card:hover{transform:translateY(-8px);box-shadow:0 26px 46px rgba(0,0,0,.35)}
+.rp-card:hover:before{transform:scaleX(1)}
+.rp-card:hover img{transform:scale(1.1);filter:saturate(1.15)}
+.rp-card:hover:after{background:linear-gradient(180deg,rgba(6,20,42,.35),rgba(6,20,42,.96))}
+.rp-tag{position:absolute;top:16px;left:16px;background:var(--g);color:var(--d);font-weight:700;font-size:.78rem;padding:5px 12px;border-radius:99px}
+.rp-card-body{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 20px}
+.rp-card h3{font:800 1.7rem/1.05 'Big Shoulders Display',sans-serif;color:#fff;transition:transform .45s var(--e)}
+.rp-feature h3{font-size:2.6rem}
+.rp-card p{max-height:0;opacity:0;overflow:hidden;margin-top:0;color:#dbe2ec;font-size:.95rem;transition:max-height .5s var(--e),opacity .4s,margin .4s}
+.rp-more{display:inline-block;margin-top:10px;color:var(--g);font-weight:600;transform:translateX(-8px);opacity:0;transition:transform .45s var(--e),opacity .4s}
+.rp-more i{font-style:normal;display:inline-block;transition:transform .3s}
+.rp-card:hover p,.rp-card:focus-visible p{max-height:80px;opacity:1;margin-top:8px}
+.rp-card:hover .rp-more,.rp-card:focus-visible .rp-more{transform:none;opacity:1}
+.rp-card:hover .rp-more i{transform:translate(3px,-3px)}
+.rp-card:focus-visible{outline:3px solid var(--g);outline-offset:3px}
+@media(hover:none){.rp-card p{max-height:80px;opacity:1;margin-top:8px}.rp-more{transform:none;opacity:1}}
+@supports(animation-timeline:view()){.rp-card{animation:rpIn linear backwards;animation-timeline:view();animation-range:entry 0% entry 45%}}
+@keyframes rpIn{from{opacity:0;transform:translateY(50px) scale(.96)}}
+
+/* ----- Full-page project view ----- */
+.rp-view{display:none;position:fixed;inset:0;z-index:9999;overflow-y:auto;overscroll-behavior:contain;background:var(--d);color:#aeb8c7}
+.rp-view:target{display:block;animation:rpOpen .7s var(--e) both}
+body:has(.rp-view:target){overflow:hidden}
+@keyframes rpOpen{from{clip-path:inset(100% 0 0 0);opacity:.4}to{clip-path:inset(0);opacity:1}}
+.rp-bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,4vw,48px);background:rgba(6,20,42,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+.rp-back{color:#fff;font-weight:600;padding:8px 18px;border:2px solid var(--g);border-radius:99px;transition:background .3s,color .3s,transform .3s var(--e)}
+.rp-back:hover{background:var(--g);color:var(--d);transform:translateX(-4px)}
+.rp-count{font:800 1.4rem 'Big Shoulders Display',sans-serif;color:var(--g)}
+.rp-hero{height:min(62vh,560px);overflow:hidden;position:relative}
+.rp-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,var(--d))}
+.rp-hero img{width:100%;height:100%;object-fit:cover;animation:rpZoom 12s var(--e) both}
+@keyframes rpZoom{from{transform:scale(1.18)}to{transform:scale(1)}}
+.rp-wrap{width:min(1020px,92%);margin:-70px auto 0;position:relative;z-index:2;padding-bottom:70px}
+.rp-tag-static{position:static;display:inline-block;margin-bottom:14px}
+.rp-view h2{font:900 clamp(2.4rem,6vw,4.6rem)/1 'Big Shoulders Display',sans-serif;color:#fff;margin-bottom:12px}
+.rp-lead{font-size:1.15rem;max-width:620px;color:#dbe2ec}
+.rp-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:34px 0;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden}
+.rp-meta div{background:var(--n);padding:18px 20px;border-top:3px solid transparent;transition:border-color .3s,background .3s}
+.rp-meta div:hover{border-color:var(--g);background:#0f2d57}
+.rp-meta dt{font-size:.8rem;color:var(--g);font-weight:600;margin-bottom:2px}.rp-meta dd{margin:0;color:#fff;font-weight:500}
+.rp-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:44px}
+.rp-cols h4{font:800 1.6rem 'Big Shoulders Display',sans-serif;color:#fff;margin-bottom:10px}.rp-cols p{margin-bottom:12px}
+.rp-list{list-style:none;padding:0;margin:0}.rp-list li{padding:9px 0 9px 28px;position:relative;border-bottom:1px solid rgba(255,255,255,.08)}
+.rp-list li:before{content:"";position:absolute;left:0;top:16px;width:12px;height:12px;background:var(--g);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.rp-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:40px}
+.rp-nav{color:#fff;font-weight:600;padding:12px 20px;border:2px solid rgba(255,255,255,.2);border-radius:6px;transition:border-color .3s,color .3s,transform .3s var(--e)}
+.rp-nav:hover{border-color:var(--g);color:var(--g);transform:translateY(-3px)}
+.rp-actions .rp-nav:first-of-type{margin-left:auto}
+/* staggered content entrance */
+.rp-view:target .rp-wrap>*{animation:rpUp .8s var(--e) both}
+.rp-view:target .rp-wrap>:nth-child(1){animation-delay:.35s}.rp-view:target .rp-wrap>:nth-child(2){animation-delay:.45s}
+.rp-view:target .rp-wrap>:nth-child(3){animation-delay:.55s}.rp-view:target .rp-wrap>:nth-child(4){animation-delay:.65s}
+.rp-view:target .rp-wrap>:nth-child(5){animation-delay:.75s}.rp-view:target .rp-wrap>:nth-child(6){animation-delay:.85s}
+@keyframes rpUp{from{opacity:0;transform:translateY(34px)}}
+@media(max-width:900px){.rp-grid{grid-template-columns:repeat(2,1fr)}.rp-feature{grid-column:span 2;grid-row:span 1}.rp-feature h3{font-size:2rem}.rp-meta{grid-template-columns:repeat(2,1fr)}.rp-cols{grid-template-columns:1fr}}
+@media(max-width:560px){.rp-grid{grid-template-columns:1fr;grid-auto-rows:250px}.rp-feature{grid-column:auto}.rp-actions .rp-nav:first-of-type{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.rp-view:target,.rp-view:target .rp-wrap>*,.rp-hero img,.rp-card{animation:none!important}.rp-card,.rp-card *{transition:none!important}}
